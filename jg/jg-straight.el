@@ -20,12 +20,12 @@
   :straight t
   :bind (("C-c a" . aidermacs-transient-menu))
   :custom
-  (aidermacs-default-model "gemini/gemini-2.5-pro")
+  (aidermacs-default-model "openai/claude-sonnet-4")
   (aidermacs-show-diff-after-change nil)
   (transient-remove-suffix 'aidermacs-transient-menu "s")
-  :hook (
-         (aidermacs-comint-mode . jg-navigation-mode)
-         ))
+  ;;(aidermacs-extra-args '("--edit-format" "diff"))
+  ;;(aidermacs-extra-args '())
+  )
 
 (straight-use-package 'async)
 
@@ -72,6 +72,14 @@
   (with-eval-after-load 'persp-mode
     (setq global-mode-string (delete '(:eval (persp-mode-line)) global-mode-string)))
   )
+
+(use-package dotenv
+  :ensure nil
+  :straight (:host github :repo "pkulev/dotenv.el")
+  :config
+  (dotenv-update-env (dotenv-load "~/.env"))
+  )
+
 (straight-use-package 'drag-stuff)
 (straight-use-package 'dumb-jump)
 (straight-use-package 'elixir-mode)
