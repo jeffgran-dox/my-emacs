@@ -248,11 +248,15 @@
 (use-package lsp-mode
   :straight t
   :init
+  ;; set up both "C-c l" and "H-l" as lsp prefix
   (setq lsp-keymap-prefix "C-c l")
+  (define-key lsp-mode-map (kbd "H-l") lsp-command-map)
+  (setq lsp-headerline-breadcrumb-enable nil)
   :hook (
          (typescript-mode . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands (lsp lsp-deferred))
+
 (straight-use-package 'lsp-ui)
 (straight-use-package 'lua-mode)
 (use-package magit

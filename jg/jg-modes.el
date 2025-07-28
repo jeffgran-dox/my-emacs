@@ -124,12 +124,6 @@
 (setq enh-ruby-add-encoding-comment-on-save nil) ; for enh-ruby-mode
 
 
-(require 'lsp-mode)
-(setq lsp-keymap-prefix "H-l")
-(define-key lsp-mode-map (kbd "H-l") lsp-command-map)
-(setq lsp-headerline-breadcrumb-enable nil)
-
-
 ;; (require 'lsp-sourcekit)
 ;; ;;(setenv "SOURCEKIT_TOOLCHAIN_PATH" "/Library/Developer/Toolchains/swift-DEVELOPMENT-SNAPSHOT-2018-11-01-a.xctoolchain")
 ;; (setq lsp-sourcekit-executable (expand-file-name "/Users/jgran/dev/sourcekit-lsp/.build/debug/sourcekit-lsp"))
