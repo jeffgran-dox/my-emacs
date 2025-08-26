@@ -344,7 +344,16 @@
   (setq persp-switch-hook nil)
   )
 (straight-use-package 'pkg-info)
-(straight-use-package 'poly-markdown)
+(use-package poly-markdown
+  :straight t
+  :bind
+  (
+   :map polymode-minor-mode-map
+        ("M-n" . nil)
+        ("C-c n" . polymode-map)
+   )
+  ;;unbind the default M-n prefix
+  )
 (straight-use-package 'ponylang-mode)
 (straight-use-package 'popup)
 (straight-use-package 'popwin)

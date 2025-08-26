@@ -72,8 +72,6 @@
   :lighter " [JGc]"
   :keymap jg-code-mode-map)
 
-(jg-code-mode 1)
-
 ;; turn jg-code-mode off for buffers where I'm not editing the text ... it messes stuff up.
 (defun disable-jg-code-mode ()
   (jg-code-mode 0))

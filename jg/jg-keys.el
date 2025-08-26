@@ -1,3 +1,6 @@
+(jg-navigation-mode 1)
+(jg-code-mode 1)
+
 (global-set-key [remap move-beginning-of-line] 'move-beginning-of-line)
 
 (setq ns-alternate-modifier 'hyper)
