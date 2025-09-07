@@ -38,7 +38,22 @@
     (recenter))
   )
 
+(use-package bash-completion
+  :straight t
+  :init
+  (require 'bash-completion)
+  (bash-completion-setup)
+  )
+
 (straight-use-package 'bind-key)
+(use-package claude-code-ide
+  :straight (:type git :host github :repo "manzaltu/claude-code-ide.el")
+  :bind ("C-c c" . claude-code-ide-menu)
+  :config
+  (claude-code-ide-emacs-tools-setup)
+  :init
+  (setq claude-code-ide-terminal-backend 'eat)
+  )
 (straight-use-package 'coffee-mode)
 (use-package company
   :straight t
@@ -82,6 +97,14 @@
 
 (straight-use-package 'drag-stuff)
 (straight-use-package 'dumb-jump)
+(use-package eat
+  :straight t
+  :bind (
+         :map eat-semi-char-mode-map
+              ("M-v" . 'eat-yank)
+         )
+
+  )
 (straight-use-package 'elixir-mode)
 (straight-use-package 'emojify)
 (use-package enh-ruby-mode
@@ -246,12 +269,16 @@
 (straight-use-package 'let-alist)
 (straight-use-package 'list-utils)
 (use-package lsp-mode
+  :after (web-mode)
   :straight t
-  :init
+  :config
   ;; set up both "C-c l" and "H-l" as lsp prefix
   (setq lsp-keymap-prefix "C-c l")
   (define-key lsp-mode-map (kbd "H-l") lsp-command-map)
   (setq lsp-headerline-breadcrumb-enable nil)
+	(setf (alist-get 'web-mode lsp--formatting-indent-alist) 'web-mode-code-indent-offset) ;; fixes indentation
+  (with-eval-after-load 'lsp-mode
+    (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]vendor\\'"))
   :hook (
          (typescript-mode . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration))
@@ -269,6 +296,13 @@
   )
 (straight-use-package 'markdown-mode)
 (straight-use-package 'maxframe)
+(use-package mermaid-mode
+  :straight t)
+
+
+(use-package mistty
+  :straight t)
+
 (straight-use-package 'multiple-cursors)
 
 (with-eval-after-load 'transient
@@ -452,6 +486,7 @@
 (straight-use-package 'vimrc-mode)
 ;;(straight-use-package 'vue-mode)
 (straight-use-package 'web-mode)
+
 (straight-use-package 'which-key)
 (straight-use-package 'with-editor)
 (straight-use-package '(ws-butler :type git :host github :repo "lewang/ws-butler"))

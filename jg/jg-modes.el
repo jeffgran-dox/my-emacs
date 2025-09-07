@@ -187,7 +187,6 @@
                                    web-mode-css-indent-offset 2
                                    web-mode-code-indent-offset 2)
                              ))
-(setf (alist-get 'web-mode lsp--formatting-indent-alist) 'web-mode-code-indent-offset) ;; fixes indentation
 (add-to-list 'auto-mode-alist '("\\.tsx?$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.vue$" . web-mode))
 (add-hook 'web-mode-hook
